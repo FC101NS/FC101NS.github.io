@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <!--Open Sans Font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <input type="text" id="inputkey" class="beau-ui" onkeyup="tryKey()">
+        <div class="beau-ui" id="key1">Q{tqnRzREnr^VFS4td#Z/ZYFcLi0.</div>
+        <div class="beau-ui" id="key2">Q.$ya  O$zF^SSSULz4UP`dF4'r5.</div>
+        <div class="beau-ui" id="key3">WswuGrxS*a9Y8FLYRa)Q5R]J:lg1s</div>
+        <div class="beau-ui" id="key4">]{|+a r9MlMUaF0^wy#ZP=_Qnln-x</div>
+        <div class="beau-ui" id="key5">cz+%Ry,b5hMhEM_h^h;`BYoXGsyA~</div>
+        <div class="beau-ui" id="datetime">Remember: May 29, 3:30-7:00 PM</div>
+        <div class="beau-ui" id="instructions"><b>Instructions</b><br>Enter the key I have given you into the text box. One of the below 5 boxes will reveal the address. Remember to disable your internet connection, as I don't want a random spy knowing this. (Looking at you, Google)</div>
+        <script>
+            function rotate(str, n){
+                let txt = str;
+                for(i=0;i<n;i++){
+                    txt = txt.substring(1)+txt.substring(0,1);
+                }
+                return(txt);
+            }
+
+            const message1 = "Q{tqnRzREnr^VFS4td#Z/ZYFcLi0.";
+            const message2 = "Q.$ya  O$zF^SSSULz4UP`dF4'r5.";
+            const message3 = "WswuGrxS*a9Y8FLYRa)Q5R]J:lg1s";
+            const message4 = "]{|+a r9MlMUaF0^wy#ZP=_Qnln-x";
+            const message5 = "cz+%Ry,b5hMhEM_h^h;`BYoXGsyA~";
+
+            const out1 = document.getElementById('key1');
+            const out2 = document.getElementById('key2');
+            const out3 = document.getElementById('key3');
+            const out4 = document.getElementById('key4');
+            const out5 = document.getElementById('key5');
+
+            function decrypt(message,key){
+                const chars = " !#$%&'()*+,-./0123456789:;=?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+                let shift = "";
+                let crypt = "";
+                if(key.length > 0){
+                    while(shift.length <= message.length){
+                        shift += key;
+                    }
+                }
+                for(let i=0;i<message.length;i++){
+                    var f = shift.substring(i,i+1);
+                    var l = message.substring(i,i+1);
+                    var t = rotate(chars, chars.length-chars.indexOf(f));
+                    crypt += t.substring(chars.indexOf(l),chars.indexOf(l)+1);
+                }
+                console.log("["+message+"]"+"["+key+"]",crypt);
+                return(crypt);
+            }
+
+            function tryKey(){
+                k = document.getElementById('inputkey').value;
+                out1.innerHTML = decrypt(message1,k);
+                out2.innerHTML = decrypt(message2,k);
+                out3.innerHTML = decrypt(message3,k);
+                out4.innerHTML = decrypt(message4,k);
+                out5.innerHTML = decrypt(message5,k);
+            }
+        </script>
+    </body>
+</html>
