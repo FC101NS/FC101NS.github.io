@@ -1,6 +1,7 @@
 *{
     color: #FFFFFF;
     font-family: 'Open Sans';
+    text-align:center;
 }
 
 .beau-ui{
@@ -12,4 +13,8 @@
 body{
     background-color:black;
     background-size: cover;
+}
+
+img{
+    margin-top:300px;
 }
